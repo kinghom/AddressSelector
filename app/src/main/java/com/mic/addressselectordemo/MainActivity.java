@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
         addressSelector.setCities(cities1);
         addressSelector.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void itemClick(AddressSelector addressSelector, CityInterface city, int tabPosition) {
+            public void itemClick(AddressSelector addressSelector, CityInterface city, int tabPosition,int position) {
                 switch (tabPosition){
                     case 0:
                         addressSelector.setCities(cities2);
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
                         addressSelector.setCities(cities3);
                         break;
                     case 2:
-                        Toast.makeText(MainActivity.this,"tabPosition ："+tabPosition+" "+city.getCityName(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"tabPosition ："+tabPosition+" "+"position:"+position+","+city.getCityName(),Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

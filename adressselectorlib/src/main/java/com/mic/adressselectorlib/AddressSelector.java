@@ -1,10 +1,10 @@
 package com.mic.adressselectorlib;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -14,6 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -96,7 +100,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
         grayLine = new View(mContext);
         grayLine.setLayoutParams(new LayoutParams(
                 LayoutParams.MATCH_PARENT,2));
-        grayLine.setBackgroundColor(mContext.getResources().getColor(R.color.line_DDDDDD));
+        grayLine.setBackgroundColor(ContextCompat.getColor(mContext,R.color.line_DDDDDD));
         addView(grayLine);
         list = new RecyclerView(mContext);
         list.setLayoutParams(new ViewGroup.LayoutParams(
@@ -360,7 +364,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
             if(listItemIcon != -1)
                 holder.img.setImageResource(listItemIcon);
             if(listTextSize != -1)
@@ -378,7 +382,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
                 @Override
                 public void onClick(View v) {
                     if(onItemClickListener != null){
-                        onItemClickListener.itemClick(AddressSelector.this,(CityInterface) v.getTag(),tabIndex);
+                        onItemClickListener.itemClick(AddressSelector.this,(CityInterface) v.getTag(),tabIndex,position);
                         tabs.get(tabIndex).setText(((CityInterface) v.getTag()).getCityName());
                         tabs.get(tabIndex).setTag(v.getTag());
                         if(tabIndex+1 < tabs.size()){
