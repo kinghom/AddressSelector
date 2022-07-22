@@ -55,6 +55,7 @@ public class MainActivity extends Activity {
                         addressSelector.setCities(cities3);
                         break;
                     case 2:
+                        addressSelector.setCities(cities3);
                         Toast.makeText(MainActivity.this,"tabPosition ："+tabPosition+" "+"position:"+position+","+city.getCityName(),Toast.LENGTH_SHORT).show();
                         break;
                 }

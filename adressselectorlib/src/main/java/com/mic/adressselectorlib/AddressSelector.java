@@ -7,6 +7,7 @@ import android.graphics.Color;
 
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,8 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
     private int listTextSelectedColor = Color.parseColor("#11B57C");
     //列表icon资源
     private int listItemIcon = -1;
+
+    private int tabTextSize = 14;
     public AddressSelector(Context context) {
         super(context);
         init(context);
@@ -268,7 +271,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
             init();
         }
         private void init(){
-            setTextSize(15);
+            setTextSize(tabTextSize);
         }
         @Override
         public void setText(CharSequence text, BufferType type) {
@@ -369,6 +372,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
                 holder.img.setImageResource(listItemIcon);
             if(listTextSize != -1)
                 holder.tv.setTextSize(listTextSize);
+
             if(TextUtils.equals(tabs.get(tabIndex).getText(),cities.get(position).getCityName())){
                 holder.img.setVisibility(View.VISIBLE);
                 holder.tv.setTextColor(listTextSelectedColor);
@@ -376,6 +380,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
                 holder.img.setVisibility(View.INVISIBLE);
                 holder.tv.setTextColor(listTextNormalColor);
             }
+
             holder.tv.setText(cities.get(position).getCityName());
             holder.itemView.setTag(cities.get(position));
             holder.itemView.setOnClickListener(new OnClickListener() {
