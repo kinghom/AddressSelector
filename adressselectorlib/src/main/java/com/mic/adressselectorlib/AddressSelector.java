@@ -29,7 +29,9 @@ import java.util.ArrayList;
  */
 
 public class AddressSelector extends LinearLayout implements View.OnClickListener{
+    //private int TextSelectedColor = Color.parseColor("#333333");
     private int TextSelectedColor = Color.parseColor("#11B57C");
+
     private int TextEmptyColor = Color.parseColor("#333333");
     //顶部的tab集合
     private ArrayList<Tab> tabs;
@@ -74,6 +76,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
         super(context, attrs, defStyleAttr);
         init(context);
     }
+
     private void init(Context context){
         removeAllViews();
         this.mContext = context;
@@ -87,6 +90,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
         addView(tabs_layout);
         tabs = new ArrayList<>();
         Tab tab = newTab("请选择",true);
+        //tab.setTextSelectedColor(TextSelectedColor);
         tabs_layout.addView(tab);
         tabs.add(tab);
         for(int i = 1;i<tabAmount;i++){
@@ -123,7 +127,6 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
         tab.setSelected(isSelected);
         tab.setText(text);
         tab.setTextEmptyColor(TextEmptyColor);
-        tab.setTextSelectedColor(TextSelectedColor);
         tab.setOnClickListener(this);
         return tab;
     }
@@ -251,6 +254,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
     public class Tab extends TextView{
         private int index = 0;
         private int TextSelectedColor = Color.parseColor("#11B57C");
+        //private int TextSelectedColor = listTextSelectedColor;
         private int TextEmptyColor = Color.parseColor("#333333");
         /**
          * 是否选中状态
@@ -302,10 +306,12 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
 
         public void setTextSelectedColor(int textSelectedColor) {
             TextSelectedColor = textSelectedColor;
+            setTextColor(TextSelectedColor);
         }
 
         public void setTextEmptyColor(int textEmptyColor) {
             TextEmptyColor = textEmptyColor;
+            setTextColor(TextEmptyColor);
         }
     }
     /**
@@ -355,6 +361,7 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
 
         public void setSelectedColor(int selectedColor) {
             SelectedColor = selectedColor;
+            indicator.setBackgroundColor(SelectedColor);
         }
     }
     private class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.MyViewHolder>{
@@ -389,12 +396,14 @@ public class AddressSelector extends LinearLayout implements View.OnClickListene
                     if(onItemClickListener != null){
                         onItemClickListener.itemClick(AddressSelector.this,(CityInterface) v.getTag(),tabIndex,position);
                         tabs.get(tabIndex).setText(((CityInterface) v.getTag()).getCityName());
+                        tabs.get(tabIndex).setTextSelectedColor(TextSelectedColor);
                         tabs.get(tabIndex).setTag(v.getTag());
                         if(tabIndex+1 < tabs.size()){
                             tabIndex ++;
                             resetAllTabs(tabIndex);
                             line.setIndex(tabIndex);
                             tabs.get(tabIndex).setText("请选择");
+                            tabs.get(tabIndex).setTextSelectedColor(TextSelectedColor);
                             tabs.get(tabIndex).setSelected(true);
                         }
                     }
