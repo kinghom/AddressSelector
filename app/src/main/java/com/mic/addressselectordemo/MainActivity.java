@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
         addressSelector.setTextSelectedColor(getResources().getColor(R.color.colorPrimary));
         addressSelector.setLineColor(getResources().getColor(R.color.colorPrimary));
         addressSelector.setListTextSelectedColor(getResources().getColor(R.color.colorPrimary));
-        addressSelector.setListItemIcon(R.mipmap.ic_launcher_round);
+        //addressSelector.setListItemIcon(R.mipmap.ic_launcher_round);
         addressSelector.setCities(cities1);
         addressSelector.setOnItemClickListener(new OnItemClickListener() {
             @Override
