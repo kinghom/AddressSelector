@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
     private ArrayList<City> cities1 = new ArrayList<>();
     private ArrayList<City> cities2 = new ArrayList<>();
     private ArrayList<City> cities3 = new ArrayList<>();
+    private ArrayList<City> cities4 = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
